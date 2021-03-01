@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ template "title" .}}
+
+    <meta name="theme-color" content="#7952b3">
+
+  </head>
+  <body>
+    {{ template "navbar" . }}
+
+    <div class="text-center">
+    {{ template "header" . }}
+      <div class="form-signin">
+          <div class="form-container">
+              <form method="POST"
+                  oninput='confirmPassword.setCustomValidity(inputPassword.value != confirmPassword.value ? "Passwords do not match" : "")'>
+                  <h2 class="text-center"><strong>Create</strong> an account.</h2>
+                  <div class="form-group"><input class="form-control" type="text" name="inputFullName" placeholder="Real name" required autofocus></div>
+                  <div class="form-group"><input class="form-control" type="text" name="inputDisplayName" placeholder="Display name" required autofocus></div>
+                  <div class="form-group"><input class="form-control" type="email" name="inputEmail" placeholder="Email" required autofocus></div>
+                  <div class="form-group"><input class="form-control" type="password" name="inputPassword" placeholder="Password" required autofocus></div>
+                  <div class="form-group"><input class="form-control" type="password" name="confirmPassword" placeholder="Confirm password" required autofocus></div>
+                  <div id="msg" class="alert alert-danger" hidden><strong>Passwords do not match.</strong></div>
+                  {{ if .ErrorText }}
+                    <div class="alert alert-danger"><strong>{{ .ErrorText }} </strong></div>
+                  {{ end }}
+                  <div class="form-group"><button class="btn btn-primary btn-block">Sign Up</button></div><a class="already" href="/login.html">Already have an account? Login here.</a>
+              </form>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{ template "title" .}}
+
+    <meta name="theme-color" content="#7952b3">
+  </head>
+  <body>
+    {{ template "navbar" . }}
+
+    <div id="content" class="text-center">
+      {{ template "header" .}}
+      <div class="container">
+        <div class="form-signin">
+          <form method="POST">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <label for="inputEmail" class="visually-hidden">Email address</label>
+            <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="visually-hidden">Password</label>
+            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <div class="mt-5 mb-3 text-muted"><a href="/recover_account.html">Forgot password?</a></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+        {{ template "footer" . }}
+  </body>
+</html>
+

@@ -1,0 +1,101 @@
+[
+    {
+        "number": 1,
+        "text": [
+            "The Earth is Flat.  Any evidence to the contrary is obviously false, and any talk of a spherical earth shall be treated as a conspiracy theory and shunned by all players."
+        ]
+    },
+    {
+        "number": 2,
+        "text": [
+            "All players must always abide by all the rules then in effect, in the form in which they are then in effect."
+        ]
+    },
+    {
+        "number": 3,
+        "text": [
+            "A rule-change is one of the following: the enactment, repeal, or amendment of a rule.  A rule change may not create, alter, or repeal more than one rule at a time.<br>A player who proposes a rule-change ",
+            "on their turn will receive 2 points, as long as that rule-change is voted on.  If it is adopted, they shall receive an additional 3 points."
+        ]
+    },
+    {
+        "number": 4,
+        "text": [
+            "The game will start with the player whose first name is earliest in alphabetical order.  Player turns shall proceed in alphabetical order based on the player's first name."
+        ]
+    },
+    {
+        "number": 5,
+        "text": [
+            "For purposes of this game, a 'day' is defined as a period of time starting from any point in one day until 11:59 pm on the next day.  A day may be greater than 24 hours, but will never be less than 24 hours."
+        ]
+    },
+    {
+        "number": 6,
+        "text": [
+            "A player's turn consists of two steps:<br>1. Proposing a rule-change and a period of debate, with only the proposing player",
+            "making any changes they desire or as may be suggested by other players.<br>2. Submitting their rule-change for voting.  Once voting begins, the proposal may not be changed by any player, though debate may continue.<br>",
+            "A player may opt to skip their full turn or the second part of their turn.  The player may allow no more than four days for debate on their proposal, though they may opt to end debate at any time",
+            "before that four-day period has elapsed.  If the player proposes a rule-change, it will automatically be submitted for a vote at the end of the four-day period unless the player explicitly opts not to do so.",
+            "Voting will take one day and may not be terminated early by the player.  The player may not withdraw the proposal once voting has begun.<br>",
+            "If a player has not started their turn within two days of the scheduled day, they will automatically forfeit their turn and play will immediately go to the next player."
+        ]
+    },
+    {
+        "number": 7,
+        "text": [
+            "A rule-change is adopted if and only if the vote is unanimous among the players who cast votes.  All players are eligible to vote on any proposal except for the player who submitted the proposal.",
+            "Only those players who voted will be considered for determining if the change is adopted.<br>",
+            "Each player who votes against a rule-change that is adopted receives 3 points.  Each player who votes for a rule-change that is not adopted receives 3 points.  All other voting players receive 1 point."
+        ]
+    },
+    {
+        "number": 8,
+        "text": [
+            "An adopted rule-change takes full effect at the movement of the completion of the vote that adopted it unless the rule-change states otherwise.",
+            "The game administrator may also delay a rule-change from taking effect for a period of up to 2 weeks, if they deem that rule-change to require an alteration of the game's management system.<br>",
+            "Each new proposal shall be given a number, starting with 201 and increasing by one for each proposal regardless of whether that proposal is adopted or not.<br>",
+            "A new rule will receive the same number of the proposal that created it.  A rule that is altered or amendment will have its number changed to that of the proposal that altered it."
+        ]
+    },
+    {
+        "number": 9,
+        "text": [
+            "Each player always has exactly one vote."
+        ]
+    },
+    {
+        "number": 10,
+        "text": [
+            "If two or more rules conflict with one another, then the rule with the lowest ordinal number takes precedence."
+        ]
+    },
+    {
+        "number": 11,
+        "text": [
+            "If players disagree about the legality of a move or the interpretation or application of a rule, then the player preceding the one moving is to be the Judge and decide the question.<br>",
+            "Disagreement for the purposes of this rule may be created by the insistence of any player. <br>",
+            "This process is called invoking Judgment.<br>",
+            "The preceding player becomes a Judge, and the Judge gives a decision.  This player has one day to give their decision, and if they fail to do so within that time period, ",
+            "the player preceding them shall become the Judge and follow the same rules.  The Judge position shall proceed in reverse-alphabetical order until a Judge renders a decision.  Under no ",
+            "circumstance can the player invoking judgement nor that player whose turn it is serve as a Judge.  The player who gives a decision will receive 5 points, unless that decision is overruled.<br>",
+            "The Judge's Judgment is overruled only by a unanimous vote of the voting players, and at least 50% of the active players must vote.  Otherwise the decision stands.<br>",
+            "If a Judge's Judgment is overruled, a new Judge will be selected following the rules above, with the overruled Judge being ineligible to become the Judge for this judgement."
+        ]
+    },
+    {
+        "number": 12,
+        "text": [
+            "Players shall start the game with 0 points.  The game will end immediately when a player has received a total of 100 points, and the first player to do so will be ",
+            "considered 'The Winner'.  In a circumstance where multiple players pass this threshold at the same time, the player with the most points will have won.  If there is a tie, ",
+            "then victory will go to the tying player who's turn it is, or if the current player has not tied then the player who�s turn would come earliest in the turn order starting ",
+            "with the current player would immediately win."
+        ]
+    },
+    {
+        "number": 13,
+        "text": [
+            "Whatever is not explicitly required or prohibited by the rules in effect is otherwise legal and permitted."
+        ]
+    }
+]

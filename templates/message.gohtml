@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{ template "title" .}}
+
+    <meta name="theme-color" content="#7952b3">
+  </head>
+  <body>
+    {{ template "navbar" . }}
+
+    <div class="text-center">
+      {{ template "header" .}}
+
+      <div class="container">
+        {{ if .MessageText }}
+        <div class="alert alert-success"><p>{{ .MessageText }}</p></div>
+        {{ end }}
+
+        <div><a href="/login.html">Return to login</a></div>
+        <div><a href="/index.html">Return to home</a></div>
+      </div>
+    </div>
+
+    {{ template "footer" . }}
+  </body>
+</html>
+

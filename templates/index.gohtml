@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ template "title" . }}
+    </head>
+    <body>
+        {{ template "navbar" . }}
+
+        <!-- Page Content  -->
+        <div id="content" class="text-center">
+            {{ template "header" . }}
+            <div class="container">
+                {{ if not .UserDisplayName }}
+                <div><a href="/login.html">Login</a></div>
+                <div><a href="/create_account.html">Create account</a></div>
+                {{ end }}
+            </div>
+        </div>
+
+        {{ template "footer" . }}
+
+    </body>
+</html>
