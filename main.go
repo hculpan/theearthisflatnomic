@@ -14,6 +14,8 @@ import (
 	"github.com/hculpan/theearthisflatnomic/web"
 )
 
+//go:generate stringer -type=NextTurnAction ./entity
+
 // Config contains the runtime configuration
 // options for the application
 type Config struct {
@@ -60,6 +62,14 @@ func setupTestData() {
 	initialize()
 	fmt.Println("Loading user")
 	entity.AddNewUser("Harry Culpan", "Kabluey", "harry@culpan.org", "happy")
+	entity.AddNewUser("Harry Culpan 2", "Sarsenon", "harry@tesseract.org", "happy")
+	entity.AddNewUser("Chris Duignan", "ElBriano", "duignan_chris@yahoo.com", "happy")
+	if _, err := entity.SetFirstTurn(); err != nil {
+		panic(err)
+	}
+	if _, err := entity.SetNextTurn(); err != nil {
+		panic(err)
+	}
 
 	if err := loadRuleset(); err != nil {
 		panic(err)

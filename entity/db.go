@@ -20,7 +20,7 @@ func InitDB() error {
 	}
 	db = d
 
-	if err := db.AutoMigrate(&Rule{}, &User{}); err != nil {
+	if err := db.AutoMigrate(&User{}, &Rule{}); err != nil {
 		panic(err)
 	}
 

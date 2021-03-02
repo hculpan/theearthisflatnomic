@@ -118,8 +118,8 @@ func recoverAccountHandler(w http.ResponseWriter, req *http.Request) {
 	default:
 		username := req.FormValue("inputEmail")
 
-		user := entity.FindUserByUsername(username)
-		if user.ID > 0 {
+		_, found := entity.FindUserByUsername(username)
+		if found {
 			if err := executeTemplate("message.gohtml", &TemplateData{ErrorText: "Email with a new password has been sent."}, w, req); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			}

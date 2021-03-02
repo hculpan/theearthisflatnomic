@@ -12,6 +12,10 @@
                 {{ template "header" . }}
             </div>
             <div class="container text-center">
+                {{ if .IsTurn }}
+                    <div class="alert alert-primary"><strong>Your turn ends at {{ .DisplayEndOfTurn }}</strong></div>
+                {{ end }}
+
                 {{ if not .UserDisplayName }}
                 <div><a href="/login.html">Login</a></div>
                 <div><a href="/create_account.html">Create account</a></div>

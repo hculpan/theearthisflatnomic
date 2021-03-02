@@ -23,8 +23,8 @@ type Claims struct {
 
 // Authenticate authenticates the user
 func Authenticate(username, password string) (*entity.User, error) {
-	user := entity.FindUserByUsername(username)
-	if user.ID == 0 {
+	user, found := entity.FindUserByUsername(username)
+	if !found {
 		return nil, fmt.Errorf("Invalid username/password")
 	}
 	result := user.VerifyPassword(password)

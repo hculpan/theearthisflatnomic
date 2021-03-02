@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/hculpan/theearthisflatnomic/entity"
 	"github.com/hculpan/theearthisflatnomic/utils"
 )
 
@@ -42,6 +43,10 @@ func initializeTemplateData(templateData *TemplateData, req *http.Request) *Temp
 	if token, err := req.Cookie("token"); err == nil {
 		if claims, err := utils.DecodeToken(token.Value); err == nil && claims != nil {
 			result.UserDisplayName = claims.DisplayName
+			if user, found := entity.FindUserByDisplayName(result.UserDisplayName); found {
+				result.IsTurn = user.IsTurn
+				result.EndOfTurn = user.EndOfTurn
+			}
 		}
 	}
 

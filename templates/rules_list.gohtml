@@ -1,15 +1,12 @@
 {{ define "rules_list" }}
   {{ if .Data }}
-  <div>
-    <table class="table table-dark">
-    <tr>
-        <th class="text-center">Rule Number</th>
-        <th class="text-center">Rule</th>
-    </tr>
+  <div class="line-border text-color">
+    <div class="text-center"><p><strong>Active Rules</strong></p></div>
+    <table class="table">
     {{ range .Data }}
     <tr>
         <td class="align-top text-center"><strong>{{ .RuleNumber }}</strong></td>
-        <td class="text-left with-border">
+        <td class="text-left">
         {{ range .RuleText }}
           <p>{{ . }} </p>
         {{ end }}
@@ -19,4 +16,14 @@
     </table>
   </div>
   {{ end }}
+
+  <style>
+    .text-color {
+        background-color: #e0f4c0;
+    }
+
+    .line-border {
+        border: 1px solid #b5e26f;
+    }
+  </style>
 {{ end }}
