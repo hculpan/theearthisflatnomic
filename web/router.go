@@ -17,6 +17,7 @@ func SetupRoutes() {
 	LoadTemplates()
 
 	http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/index.html", indexHandler)
 	http.HandleFunc("/login.html", loginHandler)
 	http.HandleFunc("/create_account.html", createAccountHandler)
 	http.HandleFunc("/logout.html", logoutHandler)
@@ -38,13 +39,19 @@ func initializeTemplateData(templateData *TemplateData, req *http.Request) *Temp
 		result.Cookies = cookies
 	}
 
+	if token, err := req.Cookie("token"); err == nil {
+		if claims, err := utils.DecodeToken(token.Value); err == nil && claims != nil {
+			result.UserDisplayName = claims.DisplayName
+		}
+	}
+
 	return result
 }
 
 func executeTemplate(name string, templateData *TemplateData, w http.ResponseWriter, req *http.Request) error {
 	templateData = initializeTemplateData(templateData, req)
 
-	if token, err := req.Cookie("token"); err == nil {
+	if token, err := req.Cookie("token"); err == nil && token != nil {
 		if claims, err := utils.DecodeToken(token.Value); err == nil {
 			templateData.UserDisplayName = claims.DisplayName
 		}

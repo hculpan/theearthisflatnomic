@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -39,8 +40,8 @@ func main() {
 		setupWatcher()
 	}
 
-	if os.Getenv("LOC_SECRET_KEY") == "" {
-		fmt.Println("LOC_SECRET_KEY is not setup")
+	if os.Getenv("TEIFN_SECRET_KEY") == "" {
+		fmt.Println("TEIFN_SECRET_KEY is not setup")
 		return
 	}
 
@@ -57,7 +58,48 @@ func setupTestData() {
 		panic(err)
 	}
 	initialize()
+	fmt.Println("Loading user")
 	entity.AddNewUser("Harry Culpan", "Kabluey", "harry@culpan.org", "happy")
+
+	if err := loadRuleset(); err != nil {
+		panic(err)
+	}
+}
+
+func loadRuleset() error {
+	fmt.Println("Loading initial ruleset")
+	f, err := os.OpenFile("./resources/data/initial-rules.json", os.O_RDONLY, 0755)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	dec := json.NewDecoder(f)
+	var list []interface{}
+	if err := dec.Decode(&list); err != nil {
+		return err
+	}
+	for _, v := range list {
+		e := v.(map[string]interface{})
+		r := entity.Rule{
+			RuleNumber: int(e["number"].(float64)),
+			RuleText:   buildString(e["text"].([]interface{})),
+			Initial:    true,
+			Active:     true,
+		}
+		r.Insert()
+	}
+
+	return nil
+}
+
+func buildString(list []interface{}) string {
+	result := ""
+
+	for _, v := range list {
+		result += v.(string)
+	}
+
+	return result
 }
 
 func initialize() error {

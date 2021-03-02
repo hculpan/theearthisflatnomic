@@ -88,7 +88,7 @@
         "text": [
             "Players shall start the game with 0 points.  The game will end immediately when a player has received a total of 100 points, and the first player to do so will be ",
             "considered 'The Winner'.  In a circumstance where multiple players pass this threshold at the same time, the player with the most points will have won.  If there is a tie, ",
-            "then victory will go to the tying player who's turn it is, or if the current player has not tied then the player who�s turn would come earliest in the turn order starting ",
+            "then victory will go to the tying player who's turn it is, or if the current player has not tied then the player who's turn would come earliest in the turn order starting ",
             "with the current player would immediately win."
         ]
     },

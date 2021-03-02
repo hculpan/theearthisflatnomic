@@ -7,13 +7,21 @@
         {{ template "navbar" . }}
 
         <!-- Page Content  -->
-        <div id="content" class="text-center">
-            {{ template "header" . }}
-            <div class="container">
+        <div id="content">
+            <div class="text-center">
+                {{ template "header" . }}
+            </div>
+            <div class="container text-center">
                 {{ if not .UserDisplayName }}
                 <div><a href="/login.html">Login</a></div>
                 <div><a href="/create_account.html">Create account</a></div>
                 {{ end }}
+            </div>
+
+            <div class="container">
+
+            {{ template "rules_list" . }}
+
             </div>
         </div>
 

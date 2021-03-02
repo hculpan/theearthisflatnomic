@@ -12,6 +12,8 @@ import (
 func createAccountHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Create account requested: %s -> %s\n", req.Method, req.URL.Path)
 
+	w.Header().Set("Content-Type", "text/html")
+
 	switch req.Method {
 	case "GET":
 		if err := executeTemplate("create_account.gohtml", nil, w, req); err != nil {
@@ -57,6 +59,8 @@ func createAccountHandler(w http.ResponseWriter, req *http.Request) {
 func loginHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Login requested: %s -> %s\n", req.Method, req.URL.Path)
 
+	w.Header().Set("Content-Type", "text/html")
+
 	if req.FormValue("inputEmail") != "" {
 		username := req.FormValue("inputEmail")
 		password := req.FormValue("inputPassword")
@@ -86,6 +90,8 @@ func loginHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func logoutHandler(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+
 	http.SetCookie(w, &http.Cookie{
 		Name:    "token",
 		Value:   "",
@@ -101,6 +107,8 @@ func logoutHandler(w http.ResponseWriter, req *http.Request) {
 
 func recoverAccountHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Printf("Recover account requested: %s -> %s\n", req.Method, req.URL.Path)
+
+	w.Header().Set("Content-Type", "text/html")
 
 	switch req.Method {
 	case "GET":

@@ -39,10 +39,10 @@ func Authenticate(username, password string) (*entity.User, error) {
 
 func getSecretKey() {
 	if len(jwtSecret) == 0 {
-		if os.Getenv("LOC_SECRET_KEY") == "" {
-			panic("LOC_SECRET_KEY is not setup correctly")
+		if os.Getenv("TEIFN_SECRET_KEY") == "" {
+			panic("TEIFN_SECRET_KEY is not setup correctly")
 		}
-		jwtSecret = []byte(os.Getenv("LOC_SECRET_KEY"))
+		jwtSecret = []byte(os.Getenv("TEIFN_SECRET_KEY"))
 	}
 }
 
@@ -50,7 +50,7 @@ func getSecretKey() {
 func CreateToken(u entity.User) (string, error) {
 	getSecretKey()
 
-	expireTime := time.Now().Add(3 * time.Hour)
+	expireTime := time.Now().Add((90 * 24) * time.Hour)
 	claims := Claims{
 		Username:    u.Username,
 		Password:    string(u.Password),
@@ -60,7 +60,7 @@ func CreateToken(u entity.User) (string, error) {
 			//Expiration time
 			ExpiresAt: expireTime.Unix(),
 			//Designated token publisher
-			Issuer: "lords_of_crime",
+			Issuer: "the_earth_is_flat_nomic",
 		},
 	}
 

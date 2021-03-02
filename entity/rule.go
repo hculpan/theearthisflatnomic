@@ -11,6 +11,14 @@ type Rule struct {
 	Active     bool
 }
 
+// FindAllActiveRules returns the list of
+// active rules
+func FindAllActiveRules() []Rule {
+	var result []Rule = []Rule{}
+	db.Where(&Rule{Active: true}).Find(&result)
+	return result
+}
+
 // Insert inserts the record into the db
 // This does not check to see if the records
 // already exists; it assumes it does not.

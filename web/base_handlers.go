@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+
+	"github.com/hculpan/theearthisflatnomic/entity"
 )
 
 func rootHandler(w http.ResponseWriter, req *http.Request) {
@@ -25,5 +27,35 @@ func rootHandler(w http.ResponseWriter, req *http.Request) {
 			fmt.Println("File not found:", req.URL.Path)
 			w.WriteHeader(http.StatusNotFound)
 		}
+	}
+}
+
+type ruleDisplay struct {
+	RuleNumber int
+	RuleText   []string
+}
+
+func indexHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Printf("Requested index.html: %s \n", req.Method)
+
+	w.Header().Set("Content-Type", "text/html")
+
+	templateData := initializeTemplateData(nil, req)
+
+	if templateData.UserDisplayName != "" {
+		rules := entity.FindAllActiveRules()
+		ruleDisplays := []ruleDisplay{}
+		for _, r := range rules {
+			rd := ruleDisplay{
+				RuleNumber: r.RuleNumber,
+				RuleText:   strings.Split(r.RuleText, "<br>"),
+			}
+			ruleDisplays = append(ruleDisplays, rd)
+		}
+		templateData.Data = ruleDisplays
+	}
+
+	if err := executeTemplate("index.gohtml", templateData, w, req); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

@@ -1,0 +1,22 @@
+{{ define "rules_list" }}
+  {{ if .Data }}
+  <div>
+    <table class="table table-dark">
+    <tr>
+        <th class="text-center">Rule Number</th>
+        <th class="text-center">Rule</th>
+    </tr>
+    {{ range .Data }}
+    <tr>
+        <td class="align-top text-center"><strong>{{ .RuleNumber }}</strong></td>
+        <td class="text-left with-border">
+        {{ range .RuleText }}
+          <p>{{ . }} </p>
+        {{ end }}
+        </td>
+    </tr>
+    {{ end }}
+    </table>
+  </div>
+  {{ end }}
+{{ end }}
