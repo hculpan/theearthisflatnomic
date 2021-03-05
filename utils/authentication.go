@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/hculpan/theearthisflatnomic/entity"
 )
 
 var jwtSecret []byte = []byte{}
@@ -21,22 +20,6 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-// Authenticate authenticates the user
-func Authenticate(username, password string) (*entity.User, error) {
-	user, found := entity.FindUserByUsername(username)
-	if !found {
-		return nil, fmt.Errorf("Invalid username/password")
-	}
-	result := user.VerifyPassword(password)
-	if result == nil {
-		user.LastLogin = time.Now()
-		if err := user.Save(); err != nil {
-			result = err
-		}
-	}
-	return user, result
-}
-
 func getSecretKey() {
 	if len(jwtSecret) == 0 {
 		if os.Getenv("TEIFN_SECRET_KEY") == "" {
@@ -47,15 +30,14 @@ func getSecretKey() {
 }
 
 // CreateToken create a jwt token
-func CreateToken(u entity.User) (string, error) {
+func CreateToken(username, fullname, displayname string) (string, error) {
 	getSecretKey()
 
 	expireTime := time.Now().Add((90 * 24) * time.Hour)
 	claims := Claims{
-		Username:    u.Username,
-		Password:    string(u.Password),
-		FullName:    u.FullName,
-		DisplayName: u.DisplayName,
+		Username:    username,
+		FullName:    fullname,
+		DisplayName: displayname,
 		StandardClaims: jwt.StandardClaims{
 			//Expiration time
 			ExpiresAt: expireTime.Unix(),

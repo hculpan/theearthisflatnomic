@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/hculpan/theearthisflatnomic/utils"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -15,8 +16,8 @@ type NextTurnAction int
 // A list of actions the user takes in
 // their actions
 const (
-	Propose NextTurnAction = iota
-	SubmitForVote
+	Submit NextTurnAction = iota
+	Voting
 )
 
 // User contains data for a user of the game
@@ -31,6 +32,22 @@ type User struct {
 	IsTurn      bool
 	EndOfTurn   time.Time
 	Action      NextTurnAction
+}
+
+// Authenticate authenticates the user
+func Authenticate(username, password string) (*User, error) {
+	user, found := FindUserByUsername(username)
+	if !found {
+		return nil, fmt.Errorf("Invalid username/password")
+	}
+	result := user.VerifyPassword(password)
+	if result == nil {
+		user.LastLogin = time.Now()
+		if err := user.Save(); err != nil {
+			result = err
+		}
+	}
+	return user, result
 }
 
 // FindUserByUsername finds the user based on the username.
@@ -133,10 +150,8 @@ func SetNextTurn() (*User, error) {
 // set to active
 func (u *User) StartTurn() {
 	u.IsTurn = true
-	loc, _ := time.LoadLocation("EST")
-	n := time.Now().In(loc)
-	u.EndOfTurn = time.Date(n.Year(), n.Month(), n.Day(), 23, 59, 0, 0, loc)
-	u.EndOfTurn = u.EndOfTurn.Add((4 * 24) * time.Hour)
+	u.EndOfTurn = utils.GetEndTime(4)
+	u.Action = Submit
 }
 
 // HashAndSalt converts password to hashed value

@@ -46,6 +46,7 @@ func initializeTemplateData(templateData *TemplateData, req *http.Request) *Temp
 			if user, found := entity.FindUserByDisplayName(result.UserDisplayName); found {
 				result.IsTurn = user.IsTurn
 				result.EndOfTurn = user.EndOfTurn
+				result.Action = user.Action
 			}
 		}
 	}

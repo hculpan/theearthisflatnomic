@@ -1,7 +1,7 @@
 {{ define "rules_list" }}
   {{ if .Data }}
-  <div class="line-border text-color">
-    <div class="text-center"><p><strong>Active Rules</strong></p></div>
+  <div class="line-border text-background">
+    <div class="text-center"><p class="text-background-darker"><strong>Active Rules</strong></p></div>
     <table class="table">
     {{ range .Data }}
     <tr>
@@ -18,12 +18,16 @@
   {{ end }}
 
   <style>
-    .text-color {
+    .text-background {
         background-color: #e0f4c0;
     }
 
+    .text-background-darker {
+        background-color: #b5e26f;
+    }
+
     .line-border {
-        border: 1px solid #b5e26f;
+        border: 2px solid #b5e26f;
     }
   </style>
 {{ end }}

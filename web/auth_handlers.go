@@ -42,7 +42,7 @@ func createAccountHandler(w http.ResponseWriter, req *http.Request) {
 				return
 			}
 
-			token, err := utils.CreateToken(*user)
+			token, err := utils.CreateToken(user.Username, user.FullName, user.DisplayName)
 			if err != nil {
 				fmt.Printf("ERROR: %+v\n", err)
 				if err2 := errorTemplate("Internal server error: "+err.Error(), "/create_account.html", "Create account", w, req); err2 != nil {
@@ -64,9 +64,9 @@ func loginHandler(w http.ResponseWriter, req *http.Request) {
 	if req.FormValue("inputEmail") != "" {
 		username := req.FormValue("inputEmail")
 		password := req.FormValue("inputPassword")
-		if user, err := utils.Authenticate(username, password); err == nil {
+		if user, err := entity.Authenticate(username, password); err == nil {
 			fmt.Printf("User logged in: %s/%s\n", user.FullName, user.Username)
-			token, err := utils.CreateToken(*user)
+			token, err := utils.CreateToken(user.Username, user.FullName, user.DisplayName)
 			if err != nil {
 				fmt.Printf("ERROR: %+v\n", err)
 				if err2 := errorTemplate("Internal server error: "+err.Error(), "/login.html", "Login", w, req); err2 != nil {

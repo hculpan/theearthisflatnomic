@@ -13,7 +13,7 @@
             </div>
             <div class="container text-center">
                 {{ if .IsTurn }}
-                    <div class="alert alert-primary"><strong>Your turn ends at {{ .DisplayEndOfTurn }}</strong></div>
+                    <div class="alert alert-primary"><strong> {{ .DisplayActionMessage }}<br>{{ .DisplaySecondaryActionMessage }} </strong></div>
                 {{ end }}
 
                 {{ if not .UserDisplayName }}
