@@ -8,6 +8,10 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
+// JWTExpirationTime specifies the system-wide JWT
+// expiration
+const JWTExpirationTime time.Duration = (90 * 24) * time.Hour
+
 var jwtSecret []byte = []byte{}
 
 // Claims defines the keys we want to put
@@ -33,7 +37,7 @@ func getSecretKey() {
 func CreateToken(username, fullname, displayname string) (string, error) {
 	getSecretKey()
 
-	expireTime := time.Now().Add((90 * 24) * time.Hour)
+	expireTime := time.Now().Add(JWTExpirationTime)
 	claims := Claims{
 		Username:    username,
 		FullName:    fullname,

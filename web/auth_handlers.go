@@ -50,7 +50,7 @@ func createAccountHandler(w http.ResponseWriter, req *http.Request) {
 				}
 				return
 			}
-			http.SetCookie(w, &http.Cookie{Name: "token", Value: token, Expires: time.Now().Add(3 * time.Hour)})
+			http.SetCookie(w, &http.Cookie{Name: "token", Value: token, Expires: time.Now().Add(utils.JWTExpirationTime)})
 			http.Redirect(w, req, "/index.html", http.StatusSeeOther)
 		}
 	}
@@ -73,7 +73,7 @@ func loginHandler(w http.ResponseWriter, req *http.Request) {
 					http.Error(w, err2.Error(), http.StatusInternalServerError)
 				}
 			} else {
-				http.SetCookie(w, &http.Cookie{Name: "token", Value: token, Expires: time.Now().Add(3 * time.Hour)})
+				http.SetCookie(w, &http.Cookie{Name: "token", Value: token, Expires: time.Now().Add(utils.JWTExpirationTime)})
 				http.Redirect(w, req, "/index.html", http.StatusSeeOther)
 			}
 		} else {
