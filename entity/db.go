@@ -3,6 +3,7 @@ package entity
 import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 var db *gorm.DB
@@ -14,7 +15,9 @@ func InitDB() error {
 		return nil
 	}
 
-	d, err := gorm.Open(sqlite.Open("./dbdata/data.db"), &gorm.Config{})
+	d, err := gorm.Open(sqlite.Open("./dbdata/data.db"), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+	})
 	if err != nil {
 		return err
 	}

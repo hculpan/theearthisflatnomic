@@ -56,8 +56,10 @@ func main() {
 
 func setupTestData() {
 	fmt.Println("Setting up test db")
-	if err := utils.RemoveContents("./dbdata"); err != nil {
-		panic(err)
+	if _, err := os.Stat("./dbdata"); err == nil {
+		if err := utils.RemoveContents("./dbdata"); err != nil {
+			panic(err)
+		}
 	}
 	initialize()
 	fmt.Println("Loading user")
